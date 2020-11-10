@@ -1,0 +1,41 @@
+﻿--SET UP TABLES
+/*CREATE TABLE USERS (
+    pid int IDENTITY(1,1) PRIMARY KEY,
+    f_name VARCHAR(255) NOT NULL,
+    l_name VARCHAR(255) NOT NULL
+);
+CREATE TABLE USER_WEIGHTS (
+    wgt_id int IDENTITY(1,1) PRIMARY KEY,
+    pid int NOT NULL FOREIGN KEY REFERENCES USERS(pid),
+    weight_kg DECIMAL(10,2) NOT NULL,
+    dt_rec DATE NOT NULL
+);
+
+CREATE TABLE FOOD_ITEMS (
+    food_id int IDENTITY(1,1) PRIMARY KEY,
+    food_nm VARCHAR(255),
+    protein int,
+    fats int,
+    carbs int
+);*/
+
+CREATE TABLE FOOD_MENUS (
+    menu_id int IDENTITY(1,1) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    descript VARCHAR(255)
+);
+
+CREATE TABLE CATEGORIES (
+    cat_id int IDENTITY(1,1) PRIMARY KEY,
+    cat_nm VARCHAR(255) NOT NULL,
+    descript VARCHAR(255)
+);
+CREATE TABLE FOOD_CATEGORIES (
+    food_id int NOT NULL FOREIGN KEY REFERENCES FOOD_ITEMS(food_id),
+    cat_id int NOT NULL FOREIGN KEY REFERENCES CATEGORIES(cat_id)
+);
+CREATE TABLE MENU_ITEMS (
+    menu_id int NOT NULL FOREIGN KEY REFERENCES FOOD_MENUS(menu_id),
+    food_id int NOT NULL FOREIGN KEY REFERENCES FOOD_ITEMS(food_id)
+);
+
