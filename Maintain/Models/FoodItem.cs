@@ -13,6 +13,7 @@ namespace Maintain.Models
             fat = fat_;
             carbs = carbs_;
         }
+
         private int id { get;set; }
         private string itemName { get;set; }
 
