@@ -60,7 +60,6 @@ INSERT INTO EXERCISES (ex_nm) VALUES ('Adductor Machine');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Leg Raises');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Shrugs');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Lunges');
-INSERT INTO EXERCISES (ex_nm) VALUES ('Merlin Squats');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Sissy Squats');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Russian Twists');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Crunches');
@@ -73,5 +72,3 @@ INSERT INTO EXERCISES (ex_nm) VALUES ('Wrist Curls');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Farmers Walks');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Dead Hangs');
 INSERT INTO EXERCISES (ex_nm) VALUES ('Kettlebell Swings');
-
-

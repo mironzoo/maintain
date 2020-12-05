@@ -13,7 +13,7 @@ CREATE TABLE USER_WEIGHTS (
 
 CREATE TABLE FOOD_ITEMS (
     food_id int IDENTITY(1,1) PRIMARY KEY,
-    food_nm VARCHAR(255),
+    name VARCHAR(255),
     protein int,
     fats int,
     carbs int
@@ -39,3 +39,12 @@ CREATE TABLE MENU_ITEMS (
     food_id int NOT NULL FOREIGN KEY REFERENCES FOOD_ITEMS(food_id)
 );
 
+CREATE TABLE MUSCLES_TRAINED (
+    ex_id int NOT NULL FOREIGN KEY REFERENCES EXERCISES(ex_id),
+    musc_cat_id int NOT NULL FOREIGN KEY REFERENCES CATEGORIES(cat_id)
+)
+
+CREATE TABLE EXERCISES (
+    ex_id int IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255)
+)
