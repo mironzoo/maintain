@@ -10,6 +10,7 @@ using Maintain.Models;
 using Maintain.Requests;
 using System.Text.Json;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Cors;
 
 namespace Maintain.Controllers
 {
@@ -23,7 +24,25 @@ namespace Maintain.Controllers
             _configuration = config;
             service = new ExerciseService(config);
         }
-        
+        [EnableCors("AllowOrigin")]
+        [HttpGet]
+        [Route("test/one")]
+        public string testone()
+        {
+            return "you passed the test";
+        }
+        [EnableCors("AllowOrigin")]
+        [HttpGet]
+        [Route("test/two")]
+        public string testtwo()
+        {
+            List<Exercise> listOfExercises = new List<Exercise>();
+            listOfExercises.Add(new Exercise(1, "Bench Press"));
+            listOfExercises.Add(new Exercise(2, "Deadlifts"));
+            listOfExercises.Add(new Exercise(3, "Squats"));
+            return JsonSerializer.Serialize(listOfExercises);
+        }
+
         [HttpGet]
         [Route("all")]
         public string GetExercises() {
