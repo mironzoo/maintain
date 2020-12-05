@@ -15,9 +15,10 @@ namespace Maintain
 {
     public class Startup
     {
+        private IConfiguration config_;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            config_ = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,6 +27,7 @@ namespace Maintain
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

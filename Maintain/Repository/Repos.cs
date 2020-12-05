@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Npgsql;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,12 +16,13 @@ namespace Maintain.Repository
         private string dbname;
         private string dbusr;
         private string dbpwd;
-        private NpgsqlConnection conn;
+        private SqlConnection conn;
 
         public Repos(IConfiguration configuration) {
             config = configuration;
             LoadConfig();
         }
+        public SqlConnection getConn() { return conn; }
         public void LoadConfig() {
             var mysettings = config.GetSection("ProdSettings");
             dbserver = mysettings.GetSection("DBServer").Value;
@@ -30,21 +31,28 @@ namespace Maintain.Repository
             dbusr = mysettings.GetSection("DBUsr").Value;
             dbpwd = mysettings.GetSection("DBPwd").Value;
         }
-        public void OpenConnection() {
-            string connString = String.Format("Server={0};Port={1};User Id={2};Password={3};Database={4};", dbserver, dbport, dbusr, dbpwd, dbname);
-            conn = new NpgsqlConnection(connString);
-            try {
-                conn.Open();
-                Debug.WriteLine("Connection opened!!");
-            } catch (Exception e) {
-                Debug.WriteLine("Exception encountered: connection may have failed");
-                throw e;
+        public bool OpenConnection() {
+            Debug.WriteLine(dbserver + "====================== DB SERVER");
+            string connString = String.Format("Server=tcp:{0},{1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Initial Catalog={4};", dbserver, dbport, dbusr, dbpwd, dbname);
+            conn = new SqlConnection(connString);
+            int retries = 0;
+            while (retries++ < 3) {
+                try {
+                    conn.Open();
+                    Debug.WriteLine("Connection opened!!");
+                    return true;
+                } catch (Exception e) {
+                    Debug.WriteLine("Exception encountered: connection may have failed!");
+                    throw e;
+                }
             }
+            return false;
         }
-        public void CloseConnection() {
+        public bool CloseConnection() {
             try {
                 conn.Close();
                 Debug.WriteLine("Connection closed!!");
+                return true;
             } catch (Exception e) {
                 Debug.WriteLine("Connection failed to close!");
                 throw e;

@@ -1,5 +1,5 @@
 ﻿--SET UP TABLES
-/*CREATE TABLE USERS (
+CREATE TABLE USERS (
     pid int IDENTITY(1,1) PRIMARY KEY,
     f_name VARCHAR(255) NOT NULL,
     l_name VARCHAR(255) NOT NULL
@@ -17,7 +17,7 @@ CREATE TABLE FOOD_ITEMS (
     protein int,
     fats int,
     carbs int
-);*/
+);
 
 CREATE TABLE FOOD_MENUS (
     menu_id int IDENTITY(1,1) PRIMARY KEY,
