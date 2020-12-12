@@ -7,6 +7,11 @@ namespace Maintain.Models
 {
     public class User
     {
+        public User(int pid, string first, string last) {
+            this.pid = pid;
+            fname = first;
+            lname = last;
+        }
         private int pid { get;set; }
         private string fname { get;set; }
         private string lname { get;set; }

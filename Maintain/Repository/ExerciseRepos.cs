@@ -2,9 +2,6 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Maintain.Models;
 
 namespace Maintain.Repository {
@@ -58,7 +55,7 @@ namespace Maintain.Repository {
         public List<Exercise> GetExercisesByMuscleGroup(int id) {
             List<Exercise> exercises = new List<Exercise>();
             string selectQuery = 
-                "SELECT DISTINCT ex.ex_id, ex_nm " +
+                "SELECT DISTINCT ex.ex_id, name " +
                 "FROM EXERCISES ex " +
                 "INNER JOIN MUSCLES_TRAINED mt ON ex.ex_id = mt.ex_id " +
                 "WHERE musc_id IN (SELECT musc_id FROM MUSCLES WHERE musc_cat_id = '" + id + "');";
@@ -75,7 +72,7 @@ namespace Maintain.Repository {
         public List<Exercise> GetAllExercises() {
 
             List<Exercise> exercises = new List<Exercise>();
-            string selectQuery = "SELECT ex_id, ex_nm FROM EXERCISES;";
+            string selectQuery = "SELECT ex_id, name FROM EXERCISES;";
 
             OpenConnection();
             SqlCommand command = new SqlCommand(selectQuery, getConn());

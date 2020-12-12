@@ -33,7 +33,7 @@ namespace Maintain.Repository
         }
         public bool OpenConnection() {
             Debug.WriteLine(dbserver + "====================== DB SERVER");
-            string connString = String.Format("Server=tcp:{0},{1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Initial Catalog={4};", dbserver, dbport, dbusr, dbpwd, dbname);
+            string connString = String.Format("Server = localhost; Database = master; User Id = sa; Password = Mz12884692;", dbserver, dbport, dbusr, dbpwd, dbname);
             conn = new SqlConnection(connString);
             int retries = 0;
             while (retries++ < 3) {

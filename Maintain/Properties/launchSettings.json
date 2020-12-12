@@ -20,7 +20,7 @@
     "Maintain": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/exercise/test/one",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

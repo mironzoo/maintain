@@ -27,9 +27,9 @@ namespace Maintain.Controllers
         [EnableCors("AllowOrigin")]
         [HttpGet]
         [Route("test/one")]
-        public string testone()
+        public bool testone()
         {
-            return "you passed the test";
+            return true;
         }
         [EnableCors("AllowOrigin")]
         [HttpGet]
